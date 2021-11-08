@@ -22,6 +22,8 @@ import (
 				input.memories[input.pointer+1:],
 		])
 		pointer:      input.pointer
+		tokens:       input.tokens
+		nestLevels:   input.nestLevels
 		cursor:       input.cursor + 1
 		inputValues:  input.inputValues
 		outputValues: input.outputValues
@@ -38,6 +40,8 @@ import (
 				input.memories[input.pointer+1:],
 		])
 		pointer:      input.pointer
+		tokens:       input.tokens
+		nestLevels:   input.nestLevels
 		cursor:       input.cursor + 1
 		inputValues:  input.inputValues
 		outputValues: input.outputValues
@@ -50,6 +54,8 @@ import (
 	output: {
 		memories:     input.memories
 		pointer:      mod(input.pointer+1, memorySize)
+		tokens:       input.tokens
+		nestLevels:   input.nestLevels
 		cursor:       input.cursor + 1
 		inputValues:  input.inputValues
 		outputValues: input.outputValues
@@ -62,6 +68,8 @@ import (
 	output: {
 		memories:     input.memories
 		pointer:      mod(input.pointer-1, memorySize)
+		tokens:       input.tokens
+		nestLevels:   input.nestLevels
 		cursor:       input.cursor + 1
 		inputValues:  input.inputValues
 		outputValues: input.outputValues
@@ -72,6 +80,8 @@ import (
 c: #Command & {
 	token: "+"
 	input: {
+		tokens:     sourceTokens
+		nestLevels: sourceNestLevels
 		memories: [0, 0]
 		pointer: 1
 		cursor:  0
