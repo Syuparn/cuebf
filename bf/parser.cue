@@ -34,7 +34,7 @@ import (
 		}
 	}}
 	// convert struct to list
-	nestLevels: [ for i, _ in list.Repeat([null], len(nestLevelsStruct)) {
+	nestLevels: [ for i in list.Range(0, len(nestLevelsStruct), 1) {
 		nestLevelsStruct["\(i)"]
 	}]
 }
