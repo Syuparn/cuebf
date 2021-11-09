@@ -22,19 +22,27 @@ import (
 #NestLevels: {
 	bracketIndices: [...{idx: int, token: ("[" | "]")}]
 	// NOTE: use struct to generate each element by previous one 
-	nestLevelsStruct: "0": {idx: 0, level: 0}
+	nestLevelsStruct: "-1": {idx: -1, level: 0, token: "["} // dummy initial element
 	nestLevelsStruct: {for i, b in bracketIndices {
-		let arrIdx = i + 1
-		"\(arrIdx)": {
+		"\(i)": {
 			idx:   b.idx
-			level: {
-				"[": nestLevelsStruct["\(arrIdx-1)"].level + 1
-				"]": nestLevelsStruct["\(arrIdx-1)"].level - 1
-			}[b.token]
+			token: b.token
+			if b.token == "[" && nestLevelsStruct["\(i-1)"].token == "[" {
+				level: nestLevelsStruct["\(i-1)"].level + 1
+			}
+			if b.token == "]" && nestLevelsStruct["\(i-1)"].token == "]" {
+				level: nestLevelsStruct["\(i-1)"].level - 1
+			}
+			if b.token != nestLevelsStruct["\(i-1)"].token {
+				level: nestLevelsStruct["\(i-1)"].level
+			}
 		}
 	}}
 	// convert struct to list
-	nestLevels: [ for i in list.Range(0, len(nestLevelsStruct), 1) {
-		nestLevelsStruct["\(i)"]
+	// NOTE: delete dummy element -1
+	nestLevels: [ for i in list.Range(0, len(nestLevelsStruct)-1, 1) {
+		let nl = nestLevelsStruct["\(i)"]
+		idx:   nl.idx
+		level: nl.level
 	}]
 }
