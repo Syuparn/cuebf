@@ -10,7 +10,7 @@ import (
 	output: #State
 }
 
-#Command: #PlusCommand | #MinusCommand | #IncCommand | #DecCommand | #StartCommand | #EndCommand
+#Command: #PlusCommand | #MinusCommand | #IncCommand | #DecCommand | #StartCommand | #EndCommand | #ReadCommand | #WriteCommand
 
 #PlusCommand: #_Command & {
 	token: "+"
@@ -118,6 +118,41 @@ import (
 	}
 }
 
+#ReadCommand: #_Command & {
+	token: ","
+	input: #State
+	output: {
+		memories: list.Concat([
+				input.memories[:input.pointer],
+				[input.inputValues[0]],
+				input.memories[input.pointer+1:],
+		])
+		pointer:      input.pointer
+		tokens:       input.tokens
+		nestLevels:   input.nestLevels
+		cursor:       input.cursor + 1
+		inputValues:  list.Drop(input.inputValues, 1)
+		outputValues: input.outputValues
+	}
+}
+
+#WriteCommand: #_Command & {
+	token: "."
+	input: #State
+	output: {
+		memories:     input.memories
+		pointer:      input.pointer
+		tokens:       input.tokens
+		nestLevels:   input.nestLevels
+		cursor:       input.cursor + 1
+		inputValues:  input.inputValues
+		outputValues: list.Concat([
+				input.outputValues,
+				[input.memories[input.pointer]],
+		])
+	}
+}
+
 #JumpToEnd: {
 	state: #State
 	// NOTE: last element 0 (default value) is neccessary, otherwise non-concrete #JumpToEnd raises out-of-index
@@ -146,5 +181,7 @@ c: #Command & {
 		memories: [0, 1]
 		pointer: 1
 		cursor:  6
+		inputValues: [10, 20, 30]
+		outputValues: []
 	}
 }
