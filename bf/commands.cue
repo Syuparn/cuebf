@@ -171,17 +171,3 @@ import (
 	}]
 	jumpedCursor: _cursors[len(_cursors)-1]
 }
-
-// TODO: delete this (only for debugging)
-c: #Command & {
-	token: input.tokens[input.cursor]
-	input: {
-		tokens:     sourceTokens
-		nestLevels: sourceNestLevels
-		memories: [0, 1]
-		pointer: 1
-		cursor:  6
-		inputValues: [10, 20, 30]
-		outputValues: []
-	}
-}
