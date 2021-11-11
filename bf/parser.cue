@@ -6,13 +6,15 @@ import (
 
 #Parser: {
 	let ts = tokens // neccessary to avoid shadowing
-	tokens: [...#Token]
+	// NOTE: actually, tokens have [...#Token] but disjunction spends more time to be evaluated
+	tokens: [...string]
 	brackets:   (#Brackets & {tokens:           ts}).brackets
 	nestLevels: (#NestLevels & {bracketIndices: brackets}).nestLevels
 }
 
 #Brackets: {
-	tokens: [...#Token]
+	// NOTE: actually, tokens have [...#Token] but disjunction spends more time to be evaluated
+	tokens: [...string]
 	brackets: [ for i, t in tokens if list.Contains(["[", "]"], t) {
 		idx:   i
 		token: t

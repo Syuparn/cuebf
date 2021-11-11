@@ -16,10 +16,10 @@ command: bf: {
 
 	task: eval: cli.Print & {
 		outputValues: (interpreter & {
-			memorySize: 10
+			memorySize: 8
 			source:     task.read.contents
 			inputValues: [97, 98, 99]
-			maxStates: 11
+			maxStates: 10
 		}).#Evaluator.result.outputValues
 		text: (view.bytesToStr & {byteInts: outputValues}).str
 	}
