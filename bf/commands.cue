@@ -10,6 +10,17 @@ import (
 	output: #State
 }
 
+#Commands: {
+	"+": #PlusCommand
+	"-": #MinusCommand
+	">": #IncCommand
+	"<": #DecCommand
+	"[": #StartCommand
+	"]": #EndCommand
+	",": #ReadCommand
+	".": #WriteCommand
+}
+
 #Command: #PlusCommand | #MinusCommand | #IncCommand | #DecCommand | #StartCommand | #EndCommand | #ReadCommand | #WriteCommand
 
 #PlusCommand: #_Command & {

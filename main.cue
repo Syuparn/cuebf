@@ -6,7 +6,7 @@ import (
 
 a: bf & {
 	memorySize: 10
-	source:     "+<-,.<>"
+	source:     "+++++++++"
 	inputValues: [1, 2, 4]
-	maxStates: 4
+	maxStates: 10
 }
