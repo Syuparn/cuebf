@@ -5,7 +5,6 @@ import (
 )
 
 #_Command: {
-	token:  string
 	input:  #State
 	output: #State
 }
@@ -21,10 +20,7 @@ import (
 	".": #WriteCommand
 }
 
-#Command: #PlusCommand | #MinusCommand | #IncCommand | #DecCommand | #StartCommand | #EndCommand | #ReadCommand | #WriteCommand
-
 #PlusCommand: #_Command & {
-	token: "+"
 	input: #State
 	output: {
 		memories: list.Concat([
@@ -42,7 +38,6 @@ import (
 }
 
 #MinusCommand: #_Command & {
-	token: "-"
 	input: #State
 	output: {
 		memories: list.Concat([
@@ -60,7 +55,6 @@ import (
 }
 
 #IncCommand: #_Command & {
-	token: ">"
 	input: #State
 	output: {
 		memories:     input.memories
@@ -74,7 +68,6 @@ import (
 }
 
 #DecCommand: #_Command & {
-	token: "<"
 	input: #State
 	output: {
 		memories:     input.memories
@@ -88,7 +81,6 @@ import (
 }
 
 #StartCommand: #_Command & {
-	token: "["
 	input: #State
 	output: {
 		memories:   input.memories
@@ -109,7 +101,6 @@ import (
 }
 
 #EndCommand: #_Command & {
-	token: "]"
 	input: #State
 	output: {
 		memories:   input.memories
@@ -130,7 +121,6 @@ import (
 }
 
 #ReadCommand: #_Command & {
-	token: ","
 	input: #State
 	output: {
 		memories: list.Concat([
@@ -148,7 +138,6 @@ import (
 }
 
 #WriteCommand: #_Command & {
-	token: "."
 	input: #State
 	output: {
 		memories:     input.memories
