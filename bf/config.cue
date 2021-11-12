@@ -4,6 +4,6 @@ inputValues: [...#MemoryUnit]
 source: string
 
 memoryUnitSize: 256
-memorySize:     *128 | int
+memorySize:     *8 | int
 
-maxStates: *1024 | int
+maxStates: *256 | int

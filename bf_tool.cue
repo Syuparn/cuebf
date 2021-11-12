@@ -19,7 +19,7 @@ command: bf: {
 			memorySize: 8
 			source:     task.read.contents
 			inputValues: [97, 98, 99]
-			maxStates: 10
+			maxStates: 512
 		}).#Evaluator.result.outputValues
 		text: (view.bytesToStr & {byteInts: outputValues}).str
 	}

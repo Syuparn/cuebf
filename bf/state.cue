@@ -2,11 +2,11 @@ package bf
 
 #State: {
 	memories: #Memories
-	pointer:  int | >=0 | <memorySize
+	pointer:  int
 	// NOTE: actually, tokens have [...#Token] but disjunction spends more time to be evaluated
 	tokens: [...string]
 	nestLevels: [...{idx: int, level: int}]
-	cursor: int | >=0 | <=len(sourceTokens)
+	cursor: int
 	inputValues: [...#MemoryUnit]
 	outputValues: [...#MemoryUnit]
 }
